@@ -28,12 +28,15 @@ wss.on('connection', function(ws) {
                     if (typeof receiver == "string") {
                         let signalMessage = JSON.stringify({
                             "Signal": {
-                                sender: receiver,
+                                sender: id,
                                 data,
                             }
                         });
                         for (let peer of peers) {
-                            peer.ws.send(signalMessage);
+                            if (peer.id == receiver) {
+                                peer.ws.send(signalMessage);
+                                break;
+                            }
                         }
                     }
                 }
