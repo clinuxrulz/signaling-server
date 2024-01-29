@@ -10,14 +10,12 @@ wss.on('connection', function(ws) {
     let id = uuidv4();
 
     ws.on('message', function(message) {
-        let data = message.data;
-        if (typeof data != "string") {
-            return;
-        }
+        let data = message.toString();
         let data2;
         try {
             data2 = JSON.parse(data);
         } catch (_ex) {
+            return;
         }
         if (data2 == "KeepAlive") {
             // do nothing, message recieved to keep connection open.
