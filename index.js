@@ -22,7 +22,7 @@ wss.on('connection', function(ws) {
         } else if (typeof data2 == "object") {
             if (data2.hasOwnProperty("Signal")) {
                 let data3 = data2["Signal"];
-                if (data3.hasOwnProperty("receiver") && data3.hasOwnProperty("data")) {
+                if ((typeof data3 == "object") && data3.hasOwnProperty("receiver") && data3.hasOwnProperty("data")) {
                     let receiver = data3["receiver"];
                     let data = data3["data"];
                     if (typeof receiver == "string") {
